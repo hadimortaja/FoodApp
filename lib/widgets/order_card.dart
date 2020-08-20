@@ -58,7 +58,7 @@ class OrderCard extends StatelessWidget {
                 children: <Widget>[
                   Text("Grilled Chicken",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
                   SizedBox(height: 5,),
-                  Text("3.0",style: TextStyle(color: Colors.orangeAccent,fontSize: 16),),
+                  Text("\$3.0",style: TextStyle(color: Colors.orangeAccent,fontSize: 16),),
                   SizedBox(height: 5,),
                   Container(
                     height: 25,

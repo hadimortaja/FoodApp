@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/pages/signup_page.dart';
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -9,6 +10,7 @@ bool _toggleVisibility =true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
@@ -54,7 +56,11 @@ bool _toggleVisibility =true;
               children: <Widget>[
                 Text("Don't have an account?",style: TextStyle(color: Color(0xFFBDC2CB),fontWeight: FontWeight.bold),),
                 SizedBox(width: 10,),
-                Text("Sign Up",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),),
+                GestureDetector(onTap: (){
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (BuildContext context)=>SignUpPage()));
+                },
+                    child: Text("Sign Up",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)),
               ],
             )
           ],
