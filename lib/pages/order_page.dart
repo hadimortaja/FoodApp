@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/pages/signin_page.dart';
 import 'package:food_delivery_app/widgets/order_card.dart';
 class OrderPage extends StatefulWidget {
   @override
@@ -21,13 +22,13 @@ class _OrderPageState extends State<OrderPage> {
             OrderCard(),
             OrderCard(),
             OrderCard(),
-            OrderCard(),
-            OrderCard(),
+
           ],
       ),
-      bottomNavigationBar:_buildTotalContainer(),//7atenaha han 3shan tser al s3er thabet w al ashyaa scroll view
+      bottomNavigationBar:_buildTotalContainer(),
 
     );
+
   }
 
   Widget _buildTotalContainer(){
@@ -70,20 +71,26 @@ class _OrderPageState extends State<OrderPage> {
                 Text("26.50",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.black),),            ],
             ),
             SizedBox(height: 20,),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius:BorderRadius.circular(30.0),
-              ),
-              child: Center(
-                child: Text(
-                  "Proceed to Checkout",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+            
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>SignInPage()));
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius:BorderRadius.circular(30.0),
+                ),
+                child: Center(
+                  child: Text(
+                    "Proceed to Checkout",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
+                  ),
                 ),
               ),
             ),
