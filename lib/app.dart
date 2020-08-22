@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/scoped-model/food_model.dart';
 import 'package:food_delivery_app/screens/main_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'homescreen.dart';
 
 class App extends StatelessWidget {
   final FoodModel foodModel =FoodModel();

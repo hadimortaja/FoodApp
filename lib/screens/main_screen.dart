@@ -28,11 +28,11 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-//call the fetch method on food
-    widget.foodModel.fetchFoods();
-    homePage =HomePage();
+
+    //call the fetch method on food
+    //widget.foodModel.fetchFoods();
+    homePage =HomePage(widget.foodModel);
     orderPage =OrderPage();
     favoritePage =FavoritePage();
     profilePage =ProfilePage();
