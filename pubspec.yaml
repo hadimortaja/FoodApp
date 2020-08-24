@@ -48,19 +48,20 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   
-assets:
-  - assets/images/beer.png
-  - assets/images/breakfast.jpeg
-  - assets/images/breakfast.png
-  - assets/images/burger.png
-  - assets/images/cheeseburger.png
-  - assets/images/coffee-cup.png
-  - assets/images/cupcake.png
-  - assets/images/lunch.jpeg
-  - assets/images/noimage.png
-  - assets/images/pizza.png
-  - assets/images/supper_1.jpeg
-  - assets/images/turkey.png
+  assets:
+    - assets/images/beer.png
+    - assets/images/breakfast.jpeg
+    - assets/images/breakfast.png
+    - assets/images/burger.png
+    - assets/images/cheeseburger.png
+    - assets/images/coffee-cup.png
+    - assets/images/cupcake.png
+    - assets/images/lunch.jpeg
+    - assets/images/noimage.png
+    - assets/images/pizza.png
+    - assets/images/supper_1.jpeg
+    - assets/images/turkey.png
+    - assets/images/hadi.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -87,3 +88,7 @@ assets:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+analyzer:
+strong-mode: true
+language:
+enableSuperMixins: true
