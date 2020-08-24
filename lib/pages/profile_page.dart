@@ -7,6 +7,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  bool turnOnNotification =false;
+  bool turnOnLocation =false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,6 +95,72 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
+              ),
+              SizedBox(height: 30,),
+              Text("Notifications",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              SizedBox(height: 20,),
+              Card(
+                elevation: 3,
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text("App Notification",style: TextStyle(fontSize: 16),),
+                          Switch(value: turnOnNotification,onChanged: (bool value){
+                            setState(() {
+                              turnOnNotification =value;
+
+                            });
+                          },)
+                        ],
+                      ),
+                      Divider(height: 10,color: Colors.grey,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text("Location Tracking",style: TextStyle(fontSize: 16),),
+                          Switch(value: turnOnLocation,onChanged: (bool value){
+                            setState(() {
+                              turnOnLocation =value;
+
+                            });
+                          },)
+                        ],
+                      ),
+                      Divider(height: 10,color: Colors.grey,),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 30,),
+              Text("Other",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              SizedBox(height: 20,),
+              Card(
+                elevation: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text("language",style: TextStyle(fontSize: 16),),
+                        Divider(height: 30,color: Colors.grey,),
+                        Text("Currency",style: TextStyle(fontSize: 16),),
+                        Divider(height: 30,color: Colors.grey,),
+
+
+                      ],
+                    ),
+                  ),
+                ),
+
+
+
+
               )
             ],
           ),
