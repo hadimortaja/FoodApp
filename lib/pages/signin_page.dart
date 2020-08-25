@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/pages/signup_page.dart';
+import 'package:food_delivery_app/widgets/button.dart';
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -40,16 +41,7 @@ bool _toggleVisibility =true;
               ),
             ),
             SizedBox(height: 20,),
-            Container(
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Center(
-                child: Text("Sign In",style: TextStyle(fontSize: 16,color: Colors.white,fontWeight: FontWeight.bold),),
-              ),
-            ),
+            Button(btnTxt: "Sign In",),
             Divider(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
