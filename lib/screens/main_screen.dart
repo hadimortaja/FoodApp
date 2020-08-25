@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/pages/favorite_page.dart';
+import 'package:food_delivery_app/pages/explore_page.dart';
 import 'package:food_delivery_app/pages/order_page.dart';
 import 'package:food_delivery_app/pages/profile_page.dart';
 import 'package:food_delivery_app/scoped-model/food_model.dart';
@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
 
   HomePage homePage;
   OrderPage orderPage;
-  FavoritePage favoritePage;
+  ExplorePage explorePage;
   ProfilePage profilePage;
 
   @override
@@ -37,10 +37,10 @@ class _MainScreenState extends State<MainScreen> {
     //widget.foodModel.fetchFoods();
     homePage =HomePage();
     orderPage =OrderPage();
-    favoritePage =FavoritePage();
+    explorePage =ExplorePage();
     profilePage =ProfilePage();
 
-    pages =[homePage,orderPage,favoritePage,profilePage];
+    pages =[homePage,explorePage,orderPage,profilePage];
     currentPage = homePage;
   }
   @override
@@ -61,13 +61,14 @@ class _MainScreenState extends State<MainScreen> {
             title: Text("Home")
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            title: Text("Explore"),
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             title: Text("Orders"),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            title: Text("Favorite"),
-          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             title: Text("Profile"),

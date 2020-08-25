@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/widgets/custom_list_tile.dart';
+import 'package:food_delivery_app/widgets/small_button.dart';
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -57,17 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(height: 10,),
                       Text("0567609085",style: TextStyle(color: Colors.grey),),
                       SizedBox(height: 20,),
-                      Container(
-                        height: 25,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: Colors.blue
-                          )
-                        ),
-                        child: Center(child: Text("Edit",style: TextStyle(color: Colors.blue,fontSize: 16),)),
-                      ),
+                     SmallButton(btnTxt: "Edit",),
                     ],
                   )
                 ],
