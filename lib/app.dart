@@ -15,8 +15,8 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Food Dilevery App",
         theme: ThemeData(primaryColor: Colors.blueAccent),
-//        home: MainScreen(model:mainModel),
-      home: AddFoodItem(),
+        home: MainScreen(model:mainModel),
+//      home: AddFoodItem(),
       ),
     );
   }

@@ -83,20 +83,19 @@ GlobalKey<FormState>_foodItemFormKey =GlobalKey();
       maxLines: maxLine,
       keyboardType: hint=="Price"|| hint =="Discount" ?TextInputType.number :TextInputType.text,
       validator: (String value) {
-        var errorMsg ="";
+
         if (value.isEmpty && hint == "Food Title") {
-          errorMsg = "The Food Title is required";
+          return  "The Food Title is required";
         }
         if (value.isEmpty && hint == "Description") {
-          errorMsg = "The Description is required";
+          return "The Description is required";
         }
         if (value.isEmpty && hint == "Category") {
-          errorMsg = "The Category is required";
+          return "The Category is required";
         }
         if (value.isEmpty && hint == "Price") {
-          errorMsg = "The Price is required";
+          return "The Price is required";
         }
-        return errorMsg;
       },
       onChanged: (String value){
         if(hint == "Food Title"){
