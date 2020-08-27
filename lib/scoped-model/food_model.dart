@@ -31,33 +31,33 @@ class FoodModel extends Model {
     discount: food.discount,
     price: food.price
   );
-  _foods.add(foodWithId);
-  print(_foods[0].discount);
+//  _foods.add(foodWithId);
+//  print(_foods[0].discount);
 
   }
 
   void fetchFoods() {
     http.get("https://fooddelivery-fce10.firebaseio.com/foods.json").then((http.Response response) {
       //  print("Fetching Data : ${response.body}");
-        final List fetchedData = json.decode(response.body);
+        final Map<String,dynamic> fetchedData = json.decode(response.body);
         print(fetchedData);
 
-//        final List<Food> fetchedFoodItems =[];
-        
-        //print(fetchedData);
-//        fetchedData.forEach((data) {
-//          Food food =Food(
-//            id: data["id"],
-//            category: data["category_id"],
-//            discount: double.parse(data["discount"]),
-//            imagePath: data["image_path"],
-//            name: data["title"],
-//            price: double.parse(data["price"]),
-//          );
-//          fetchedFoodItems.add(food);
-//         });
-//         _foods =fetchedFoodItems;
+        final List<Food> foodItems =[];
 
+        fetchedData.forEach((String id ,dynamic foodData) {
+          Food fooItem = Food(
+            id: id,
+            name: foodData["title"],
+            description: foodData["description"],
+            category: foodData["category"],
+            price: foodData["price"],
+            discount: foodData["discount"]
+        );
+          foodItems.add(fooItem);
+        });
+        _foods =foodItems;
+        print(_foods);
     });
+    
   }
 }
