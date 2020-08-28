@@ -31,14 +31,14 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    widget.model.fetchFoods();
+//    widget.model.fetchFoods();
 
 
     //call the fetch method on food
     //widget.foodModel.fetchFoods();
     homePage =HomePage();
     orderPage =OrderPage();
-    explorePage =ExplorePage();
+    explorePage =ExplorePage(model: widget.model,);
     profilePage =ProfilePage();
 
     pages =[homePage,explorePage,orderPage,profilePage];
