@@ -6,13 +6,22 @@ import 'package:http/http.dart' as http;
 
 class FoodModel extends Model {
   List<Food> _foods = [];
+  bool _isLoading = false;
+
+  bool get isLoading{
+    return _isLoading;
+  }
 
   List<Food> get foods {
     return List.from(_foods);
   }
 
-  void addFood(Food food) async{
-//    _foods.add(food);
+
+  Future <bool> addFood(Food food) async{
+    _isLoading =true;
+    notifyListeners();
+try{
+  //    _foods.add(food);
   final Map<String,dynamic>foodData ={
     "title":food.name,
     "description":food.description,
@@ -20,19 +29,27 @@ class FoodModel extends Model {
     "price":food.price,
     "discount":food.discount
   };
- final http.Response response = await http.post("https://fooddelivery-fce10.firebaseio.com/foods.json",body: json.encode(foodData));
- final Map<String,dynamic> responseData= json.decode(response.body);
+  final http.Response response = await http.post("https://fooddelivery-fce10.firebaseio.com/foods.json",body: json.encode(foodData));
+  final Map<String,dynamic> responseData= json.decode(response.body);
 // print(responseData["name"]);
   Food foodWithId =Food(
-    id: responseData["name"],
-    name: food.name,
-    description: food.description,
-    category: food.category,
-    discount: food.discount,
-    price: food.price
+      id: responseData["name"],
+      name: food.name,
+      description: food.description,
+      category: food.category,
+      discount: food.discount,
+      price: food.price
   );
-//  _foods.add(foodWithId);
-//  print(_foods[0].discount);
+  _isLoading =false;
+  notifyListeners();
+  return Future.value(true);
+}catch(e){
+  _isLoading =false;
+  notifyListeners();
+  return Future.value(false);
+
+  //print("Connection Error : $e");
+}
 
   }
 
@@ -56,7 +73,7 @@ class FoodModel extends Model {
           foodItems.add(fooItem);
         });
         _foods =foodItems;
-        print(_foods);
+        notifyListeners();
     });
     
   }

@@ -28,8 +28,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ListView(
-        padding: EdgeInsets.only(top: 50,left: 20,right: 20),
+        padding: EdgeInsets.only(left: 20,right: 20),
         children: <Widget>[
           HomeTopInfo(),
           FoodCategory(),

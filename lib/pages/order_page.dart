@@ -10,19 +10,13 @@ class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Your Food Cart",style: TextStyle(color: Colors.black),),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-      ),
+      backgroundColor: Colors.white,
       body: ListView(
           scrollDirection: Axis.vertical,
           children: <Widget>[
             OrderCard(),
             OrderCard(),
             OrderCard(),
-
           ],
       ),
       bottomNavigationBar:_buildTotalContainer(),
@@ -36,7 +30,6 @@ class _OrderPageState extends State<OrderPage> {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: 220,
-
         margin: EdgeInsets.only(top: 10),
         child: Column(
           children: <Widget>[

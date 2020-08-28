@@ -19,7 +19,7 @@ class FoodItemCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                blurRadius: 3, offset: Offset(0, 3), color: Colors.black38),
+                blurRadius: 3, offset: Offset(0, 3), color: Colors.black12),
           ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
