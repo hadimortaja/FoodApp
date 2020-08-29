@@ -117,6 +117,22 @@ return Future.value(true);
 
 }
   }
+  Future<bool>deleteFood(String foodId)async{
+    _isLoading=true;
+    notifyListeners();
+    try{
+     final http.Response response =await http.delete("https://fooddelivery-fce10.firebaseio.com/foods/${foodId}.json");
+
+     _foods.removeWhere((Food food)=>food.id==foodId );
+     _isLoading =false;
+     notifyListeners();
+     return Future.value(true);
+    }catch (error){
+_isLoading =false;
+notifyListeners();
+return Future.value(false);
+    }
+  }
   Food getFoodItemById(String foodId){
     Food food;
     for(int i =0;i<_foods.length;i++){

@@ -4,6 +4,7 @@ import 'package:food_delivery_app/admin/pages/add_food_item.dart';
 import 'package:food_delivery_app/models/food_model.dart';
 import 'package:food_delivery_app/scoped-model/main_model.dart';
 import 'package:food_delivery_app/widgets/food_item_card.dart';
+import 'package:food_delivery_app/widgets/show_dialog.dart';
 import 'package:food_delivery_app/widgets/small_button.dart';
 import 'package:scoped_model/scoped_model.dart';
 class ExplorePage extends StatefulWidget {
@@ -53,6 +54,14 @@ class _ExplorePageState extends State<ExplorePage> {
                         _explorePageScaffoldKey.currentState.showSnackBar(snackBar);
                       }
                     },
+                    onDoubleTap:(){
+                      //delete food Item
+                      showLoadingIndicator(context, "Deleting Food Item...");
+                      model.deleteFood(model.foods[index].id).then((bool response){
+                        Navigator.of(context).pop();
+
+                      });
+                      },
                     child: FoodItemCard(
                     model.foods[index].name,
                     model.foods[index].description,
