@@ -56,6 +56,7 @@ class FoodItemCard extends StatelessWidget {
               Container(
                 width: 200,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,//
                   children: <Widget>[
                     Text(
                       "\u{20B5} $price",
@@ -65,7 +66,7 @@ class FoodItemCard extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      width: 90,
+                      width: 70,
                     ),
                     SmallButton(
                       btnTxt: "Buy",
