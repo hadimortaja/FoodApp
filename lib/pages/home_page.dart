@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/food_model.dart';
+import 'package:food_delivery_app/pages/food_details_page.dart';
 import 'package:food_delivery_app/scoped-model/food_model.dart';
 import 'package:food_delivery_app/scoped-model/main_model.dart';
 import 'package:food_delivery_app/widgets/bought_foods.dart';
@@ -69,18 +71,25 @@ class _HomePageState extends State<HomePage> {
 
   }
   Widget _buildFoodItems(Food food){
-    return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      child: BoughtFoods(
-        id: food.id,
-        imagePath: "assets/images/breakfast.png",
-        category: food.category,
-        discount: food.discount,
-        name: food.name,
-        price: food.price,
-        ratings: food.ratings,
-      ),
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context)=>FoodDetailsPage(food:food),
+        ));
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 20),
+        child: BoughtFoods(
+          id: food.id,
+          imagePath: "assets/images/breakfast.png",
+          category: food.category,
+          discount: food.discount,
+          name: food.name,
+          price: food.price,
+          ratings: food.ratings,
+        ),
 
+      ),
     );
   }
 }
