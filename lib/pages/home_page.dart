@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
       margin: EdgeInsets.only(bottom: 20),
       child: BoughtFoods(
         id: food.id,
-        imagePath: food.imagePath,
+        imagePath: "assets/images/breakfast.png",
         category: food.category,
         discount: food.discount,
         name: food.name,
