@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/pages/signin_page.dart';
 import 'package:food_delivery_app/scoped-model/main_model.dart';
+import 'package:food_delivery_app/widgets/show_dialog.dart';
 import 'package:scoped_model/scoped_model.dart';
 class SignUpPage extends StatefulWidget {
   @override
@@ -189,6 +190,7 @@ Widget _buildSignUpButton(){
     builder: (BuildContext sctx, Widget child, MainModel model){
 return GestureDetector(
           onTap: () {
+            showLoadingIndicator(context, "Signing Up...");
             onSubmit(model.authenticate);
           },
           child: Container(
@@ -216,7 +218,16 @@ return GestureDetector(
 if(_formKey.currentState.validate()){
   _formKey.currentState.save();
   print("The Email is : $_email, The password is : $_password");
-  authenticate(_email,_password);
+  authenticate(_email,_password).then((final response){
+Navigator.of(context).pop();
+if(!response['hasError']){
+
+  //navigate to the home page
+}else{
+ 
+  //display the error message in the snackbar
 }
+      });
+    }
   }
 }
