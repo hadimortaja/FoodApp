@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:food_delivery_app/enums/auth_mode.dart';
 import 'package:food_delivery_app/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart'as http;
@@ -17,7 +18,7 @@ class UserModel extends Model{
     return _isLoading;
   }
 
-  Future<Map<String,dynamic>> authenticate(String email,String password)async{
+  Future<Map<String,dynamic>> authenticate(String email,String password,{AuthMode authMode =AuthMode.SignIn})async{
     _isLoading =true;
     notifyListeners();
     Map<String, dynamic> authData = {
@@ -28,13 +29,26 @@ class UserModel extends Model{
     String message;
     bool hasError =false;
     try{
-      http.Response response = await http.post(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyALbbRRZKoyMHYFIlZLfjjaeGfnrmi1dEQ",
-          body: json.encode(authData),
-          headers: {'Content-Type': ' application/json'});
+      http.Response response;
+      if(authMode ==AuthMode.SignUp){
+
+        response = await http.post(
+            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyALbbRRZKoyMHYFIlZLfjjaeGfnrmi1dEQ",
+            body: json.encode(authData),
+            headers: {'Content-Type': ' application/json'});
+
+      }else if(authMode==AuthMode.SignIn){
+
+         response = await http.post(
+            "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyALbbRRZKoyMHYFIlZLfjjaeGfnrmi1dEQ",
+            body: json.encode(authData),
+            headers: {'Content-Type': ' application/json'});
+
+      }
+
+
       Map<String,dynamic>responseBody =json.decode(response.body);
 
-      print("The response body again is : $responseBody");
       if (responseBody.containsKey('idToken')) {
         _authenticatedUser = User(
           id: responseBody['localId'],
@@ -42,12 +56,19 @@ class UserModel extends Model{
           token: responseBody['idToken'],
           userType: 'customer',
         );
-        message = "Sign Up Successfully";
+        if(authMode==AuthMode.SignUp){
+          message = "Sign Up Successfully";
+        }else{
+          message = "Sign In Successfully";
+        }
       } else {
+        hasError = true;
         if (responseBody['error']['message'] == 'EMAIL_EXISTS') {
-          hasError =true;
           message = "Email Already exists";
-//  print("Email Already exists");
+        } else if (responseBody['error']['message'] == 'EMAIL_NOT_FOUND') {
+          message = "Email Does Not Exist";
+        } else if (responseBody['error']['message'] == "INVALID_PASSWORD") {
+          message = "Password is Incorrect";
         }
       }
       _isLoading = false;

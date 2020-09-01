@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/enums/auth_mode.dart';
 import 'package:food_delivery_app/pages/signin_page.dart';
 import 'package:food_delivery_app/scoped-model/main_model.dart';
 import 'package:food_delivery_app/widgets/show_dialog.dart';
@@ -20,11 +21,14 @@ class _SignUpPageState extends State<SignUpPage> {
 //  String _confirmPassword;
 
   GlobalKey<FormState>_formKey =GlobalKey();
+  GlobalKey<ScaffoldState>_scaffoldKey =GlobalKey();
+
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Colors.grey.shade100,
         resizeToAvoidBottomPadding: false,//3shan bottm pixel error
         body: Padding(
@@ -216,16 +220,23 @@ return GestureDetector(
 
   void onSubmit(Function authenticate){
 if(_formKey.currentState.validate()){
+
   _formKey.currentState.save();
   print("The Email is : $_email, The password is : $_password");
-  authenticate(_email,_password).then((final response){
+  authenticate(_email,_password,authMode: AuthMode.SignUp).then((final response){
 Navigator.of(context).pop();
 if(!response['hasError']){
-
-  //navigate to the home page
+  Navigator.of(context).pop();
+  Navigator.of(context).pushReplacementNamed("/mainscreen");
 }else{
- 
-  //display the error message in the snackbar
+Navigator.of(context).pop();
+_scaffoldKey.currentState.showSnackBar(
+  SnackBar(
+    duration: Duration(seconds: 2),
+    backgroundColor: Colors.red,
+    content: Text(response['message']),
+  ),
+);
 }
       });
     }

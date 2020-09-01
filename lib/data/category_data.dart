@@ -1,9 +1,9 @@
 import 'package:food_delivery_app/models/category_model.dart';
 final categories =[
   Category(
-    NoOfItems: 43,
-    imagePath: "assets/images/burger.png",
-    categoryName:"Burger"
+      NoOfItems: 43,
+      imagePath: "assets/images/burger.png",
+      categoryName:"Burger"
   ),
   Category(
       NoOfItems: 43,
