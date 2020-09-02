@@ -222,8 +222,7 @@ return GestureDetector(
 if(_formKey.currentState.validate()){
 
   _formKey.currentState.save();
-  print("The Email is : $_email, The password is : $_password");
-  authenticate(_email,_password,authMode: AuthMode.SignUp).then((final response){
+  authenticate(_email,_password,_username,authMode: AuthMode.SignUp).then((final response){
 Navigator.of(context).pop();
 if(!response['hasError']){
   Navigator.of(context).pop();
